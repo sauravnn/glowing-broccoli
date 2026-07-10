@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Mind Fitness | Build Discipline11</title>
+    <meta name="description" content="Track your training, calculate BMI, and build elite discipline with Iron Mind Fitness.">
+    
+	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
+
+	/* ==========================
+	   ROOT VARIABLES
+	========================== */
+
+	:root{
+		--bg:#080808;
+		--surface:#101010;
+		--card:#151515;
+		--border:#2a2a2a;
+
+		--text:#ffffff;
+		--text-muted:#bcbcbc;
+
+		--green:#b8ff00;
+		--orange:#ff5b22;
+
+		--shadow:0 15px 35px rgba(0,0,0,.35);
+
+		--radius:20px;
+		--transition:.3s ease;
+	}
+	/* ==========================
+	   LIGHT MODE
+	========================== */
+
+	body.light{
+		--bg:#f5f5f5;
+		--surface:#ffffff;
+		--card:#ffffff;
+		--border:#d9d9d9;
+
+		--text:#111111;
+		--text-muted:#555555;
+
+		--shadow:0 15px 35px rgba(0,0,0,.08);
+	}
+
+	/* ==========================
+	   RESET
+	========================== */
+
+	*{
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+	}
+
+	html{
+		scroll-behavior:smooth;
+	}
+
+	body{
+		background:var(--bg);
+		color:var(--text);
+		font-family:"Inter",sans-serif;
+		overflow-x:hidden;
+		transition:background .3s,color .3s;
+	}
+
+	img{
+		max-width:100%;
+		display:block;
+	}
+
+	section{
+		padding:60px 8% 10px;
+	}
+
+	.title{
+		font-family:"Anton",sans-serif;
+		font-size:clamp(42px,5vw,60px);
+		margin-bottom:40px;
+		letter-spacing:1px;
+	}
+
+	*:focus-visible{
+		outline:3px solid var(--green);
+		outline-offset:3px;
+	}
+
+	/* ==========================
+	   NAVIGATION
+	========================== */
+
+	nav{
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		z-index:999;
+
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+
+		padding:18px 8%;
+
+		background:rgba(0,0,0,.75);
+		backdrop-filter:blur(12px);
+
+		transition:.3s;
+	}
+
+	body.light nav{
+		background:rgba(255,255,255,.9);
+	}
+
+	.logo{
+		font-family:"Anton",sans-serif;
+		font-size:30px;
+		letter-spacing:2px;
+		color:var(--green);
+	}
+
+	.nav-links{
+		display:flex;
+		list-style:none;
+		align-items:center;
+		gap:25px;
+	}
+
+	.nav-links a{
+		color:var(--text);
+		text-decoration:none;
+		font-weight:600;
+		transition:.3s;
+	}
+
+	.nav-links a:hover{
+		color:var(--green);
+	}
+
+	.menu-toggle{
+		display:none;
+		flex-direction:column;
+		gap:5px;
+		background:none;
+		border:none;
+		cursor:pointer;
+	}
+
+	.menu-toggle span{
+		width:26px;
+		height:3px;
+		background:var(--text);
+		transition:.3s;
+	}
+
+	/* ==========================
+	   THEME BUTTON
+	========================== */
+
+	.theme-btn{
+		margin-left:25px;
+
+		width:46px;
+		height:46px;
+
+		border-radius:50%;
+		border:2px solid var(--green);
+
+		background:transparent;
+
+		color:var(--green);
+
+		cursor:pointer;
+
+		font-size:20px;
+
+		transition:.3s;
+	}
+
+	.theme-btn:hover{
+		background:var(--green);
+		color:#000;
+		transform:rotate(180deg);
+	}
+
+	/* ==========================
+	   HERO
+	========================== */
+
+	.hero{
+		height:100vh;
+
+		display:flex;
+		align-items:center;
+
+		padding:0 8%;
+
+		background:
+		linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.8)),
+		url("https://images.unsplash.com/photo-1685633224597-294ff1adfd6f?q=80&w=1600")
+		center/cover no-repeat;
+	}
+
+	body.light .hero{
+		background:
+		linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.75)),
+		url("https://images.unsplash.com/photo-1685633224597-294ff1adfd6f?q=80&w=1600")
+		center/cover no-repeat;
+	}
+
+	.hero-content{
+		max-width:700px;
+	}
+
+	.hero h1{
+		font-family:"Anton",sans-serif;
+		font-size:clamp(60px,9vw,120px);
+		line-height:.9;
+	}
+
+	.hero h1 span{
+		color:var(--green);
+	}
+
+	.hero p{
+		margin:30px 0;
+		color:var(--text-muted);
+		font-size:18px;
+		max-width:600px;
+		line-height:1.7;
+	}
+
+	/* ==========================
+	   BUTTONS
+	========================== */
+
+	.btn{
+		display:inline-flex;
+		justify-content:center;
+		align-items:center;
+
+		padding:15px 35px;
+
+		border:none;
+		border-radius:40px;
+
+		background:var(--green);
+
+		color:#000;
+
+		font-weight:700;
+
+		text-decoration:none;
+
+		cursor:pointer;
+
+		transition:.3s;
+	}
+
+	.btn:hover{
+		transform:translateY(-3px);
+		background:#fff;
+	}
+
+	.btn:focus-visible{
+		transform:translateY(-3px);
+	}
+
+	/* ==========================
+	   ABOUT
+	========================== */
+
+	.about-grid{
+		display:grid;
+		grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+		gap:30px;
+	}
+
+	.about-card{
+		background:var(--card);
+		border:1px solid var(--border);
+
+		padding:35px;
+
+		border-radius:var(--radius);
+
+		transition:.3s;
+
+		box-shadow:var(--shadow);
+	}
+
+	.about-card:hover{
+		transform:translateY(-10px);
+	}
+
+	.about-card h3{
+		margin-bottom:15px;
+		color:var(--green);
+		font-size:24px;
+	}
+
+	.about-card p{
+		color:var(--text-muted);
+		line-height:1.7;
+	}
+
+	/* ==========================
+	   STATS
+	========================== */
+
+	.stats{
+		display:grid;
+		grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+		gap:25px;
+		margin-bottom:40px;
+	}
+
+	.stat{
+		background:var(--card);
+		border:1px solid var(--border);
+
+		padding:35px;
+
+		border-radius:var(--radius);
+
+		box-shadow:var(--shadow);
+
+		transition:.3s;
+	}
+
+	.stat:hover{
+		transform:translateY(-8px);
+	}
+
+	.stat h2{
+		font-family:"Anton",sans-serif;
+		color:var(--green);
+		font-size:48px;
+	}
+
+	.stat p{
+		color:var(--text-muted);
+		margin-top:8px;
+	}
+
+	.tracker-wrapper{
+		background:var(--card);
+		border:1px solid var(--border);
+
+		padding:35px;
+
+		border-radius:var(--radius);
+
+		box-shadow:var(--shadow);
+	}
+
+	.bar{
+		margin-top:15px;
+
+		width:100%;
+		height:15px;
+
+		background:#333;
+
+		border-radius:30px;
+
+		overflow:hidden;
+	}
+
+	.progress{
+		width:80%;
+		height:100%;
+
+		background:linear-gradient(90deg,var(--green),#78d300);
+
+		border-radius:30px;
+	}
+	/* ==========================
+	   BACK TO TOP BUTTON
+	========================== */
+
+	.back-to-top{
+		position: fixed;
+		right: 25px;
+		bottom: 25px;
+
+		width: 55px;
+		height: 55px;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border: none;
+		border-radius: 50%;
+
+		background: var(--green);
+		color: #000;
+
+		font-size: 22px;
+		font-weight: bold;
+
+		cursor: pointer;
+
+		box-shadow: 0 10px 25px rgba(0,0,0,.35);
+
+		z-index: 99999;
+
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+
+		transform: translateY(25px);
+
+		transition:
+			opacity .35s ease,
+			visibility .35s ease,
+			transform .35s ease,
+			background .25s ease;
+	}
+
+	.back-to-top.show{
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.back-to-top:hover{
+		background: #d4ff4d;
+		transform: translateY(-5px);
+	}
+
+	.back-to-top:active{
+		transform: scale(.95);
+	}
+
+	/* ==========================
+	   DARK MODE BUTTON
+	========================== */
+
+	.theme-btn{
+		width: 45px;
+		height: 45px;
+
+		margin-left: 20px;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background: transparent;
+
+		border: 2px solid var(--green);
+		border-radius: 50%;
+
+		color: var(--green);
+
+		font-size: 20px;
+		cursor: pointer;
+
+		transition: .3s;
+	}
+
+	.theme-btn:hover{
+		background: var(--green);
+		color: #000;
+	}
+
+	/* ==========================
+	   LIGHT MODE
+	========================== */
+
+	body.light{
+		--bg:#f4f4f4;
+		--card:#ffffff;
+		--text:#111111;
+		--white:#111111;
+		--gray:#555555;
+	}
+
+	/* Body */
+	body{
+		background:var(--bg);
+		color:var(--text);
+	}
+
+	/* Navigation */
+	body.light nav{
+		background:rgba(255,255,255,.92);
+		border-bottom:1px solid #ddd;
+	}
+
+	body.light .nav-links a{
+		color:#111;
+	}
+
+	body.light .menu-toggle span{
+		background:#111;
+	}
+
+	/* Hero Overlay */
+	body.light .hero{
+		background:
+			linear-gradient(rgba(255,255,255,.60),rgba(255,255,255,.65)),
+			url("https://images.unsplash.com/photo-1685633224597-294ff1adfd6f?q=80&w=1200")
+			center/cover no-repeat;
+	}
+
+	body.light .hero p{
+		color:#333;
+	}
+
+	/* Cards */
+	body.light .card,
+	body.light .stat,
+	body.light .tracker-wrapper,
+	body.light .price-card,
+	body.light .faq-item,
+	body.light .main-form,
+	body.light .bmi-container{
+		background:var(--card);
+		color:#111;
+		border-color:#ddd;
+	}
+
+	/* Inputs */
+	body.light input,
+	body.light textarea{
+		background:#fff;
+		color:#111;
+		border:1px solid #bbb;
+	}
+
+	/* FAQ */
+	body.light .faq-question{
+		color:#111;
+	}
+
+	body.light .faq-answer{
+		background:#f3f3f3;
+	}
+
+	body.light .faq-answer p{
+		color:#333;
+	}
+
+	/* Footer */
+	body.light footer{
+		background:#e9e9e9;
+		color:#555;
+	}
+
+	/* Mobile Menu */
+	body.light .nav-links{
+		background:#fff;
+	}
+	/* ==========================
+	   TRAINING PROGRAMS
+	========================== */
+
+	.workouts{
+		display:grid;
+		grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+		gap:30px;
+	}
+
+	.card{
+		background:var(--card);
+		border-radius:20px;
+		overflow:hidden;
+		transition:.35s;
+		border:1px solid rgba(255,255,255,.08);
+		box-shadow:0 10px 25px rgba(0,0,0,.25);
+	}
+
+	.card:hover{
+		transform:translateY(-10px);
+		box-shadow:0 20px 40px rgba(0,0,0,.35);
+	}
+
+	.card-img-placeholder{
+		height:220px;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		background:#202020;
+		color:#888;
+		font-weight:700;
+		font-size:20px;
+	}
+
+	.card div{
+		padding:25px;
+	}
+
+	.card h3{
+		font-size:28px;
+		margin-bottom:12px;
+		color:var(--green);
+	}
+
+	.card p{
+		color:#ccc;
+		line-height:1.7;
+	}
+
+	/* ==========================
+	   BMI CALCULATOR
+	========================== */
+
+	.bmi-container{
+		background:var(--card);
+		padding:35px;
+		border-radius:20px;
+		box-shadow:0 10px 30px rgba(0,0,0,.25);
+	}
+
+	.bmi-form{
+		display:flex;
+		flex-wrap:wrap;
+		gap:20px;
+		align-items:flex-end;
+	}
+
+	.form-group{
+		flex:1;
+		min-width:220px;
+		display:flex;
+		flex-direction:column;
+		gap:8px;
+	}
+
+	.form-group label{
+		font-weight:600;
+	}
+
+	.form-group input{
+		width:100%;
+		padding:15px;
+		border-radius:10px;
+		border:1px solid #333;
+		background:#101010;
+		color:var(--text);
+		font-size:16px;
+	}
+
+	.form-group input:focus{
+		outline:none;
+		border-color:var(--green);
+	}
+
+	.bmi-result{
+		margin-top:25px;
+		font-size:20px;
+		font-weight:700;
+		color:var(--green);
+	}
+
+	/* ==========================
+	   PRICING
+	========================== */
+
+	.pricing-grid{
+		display:grid;
+		grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+		gap:30px;
+	}
+
+	.price-card{
+		position:relative;
+		background:var(--card);
+		padding:40px;
+		border-radius:20px;
+		border:1px solid #222;
+		transition:.35s;
+	}
+
+	.price-card:hover{
+		transform:translateY(-8px);
+	}
+
+	.price-card.premium{
+		border:2px solid var(--green);
+	}
+
+	.badge{
+		position:absolute;
+		top:18px;
+		right:18px;
+		background:var(--green);
+		color:#000;
+		padding:6px 12px;
+		border-radius:30px;
+		font-size:12px;
+		font-weight:bold;
+	}
+
+	.price{
+		font-size:52px;
+		color:var(--green);
+		font-family:'Anton',sans-serif;
+		margin:20px 0;
+	}
+
+	.price span{
+		font-size:18px;
+		color:#999;
+		font-family:'Inter',sans-serif;
+	}
+
+	.price-card ul{
+		list-style:none;
+		margin:25px 0;
+	}
+
+	.price-card li{
+		margin:12px 0;
+		color:#ccc;
+	}
+
+	/* ==========================
+	   FAQ
+	========================== */
+
+	.faq-container{
+		display:flex;
+		flex-direction:column;
+		gap:18px;
+	}
+
+	.faq-item{
+		background:var(--card);
+		border-radius:12px;
+		overflow:hidden;
+	}
+
+	.faq-question{
+		width:100%;
+		padding:22px;
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+		background:none;
+		border:none;
+		color:var(--text);
+		font-size:18px;
+		font-weight:700;
+		cursor:pointer;
+	}
+
+	.faq-answer{
+		max-height:0;
+		overflow:hidden;
+		transition:max-height .35s ease;
+		background:rgba(255,255,255,.03);
+	}
+
+	.faq-answer p{
+		padding:20px;
+		line-height:1.7;
+		color:#bbb;
+	}
+
+	.faq-item.active .faq-answer{
+		max-height:300px;
+	}
+
+	/* ==========================
+	   CONTACT
+	========================== */
+
+	.contact-section{
+		text-align:center;
+	}
+
+	.contact-grid{
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+
+	.main-form{
+		width:100%;
+		max-width:850px;
+		display:flex;
+		flex-direction:column;
+		gap:18px;
+		background:var(--card);
+		padding:40px;
+		border-radius:20px;
+		box-shadow:0 10px 30px rgba(0,0,0,.3);
+	}
+
+	.main-form input,
+	.main-form textarea{
+		width:100%;
+		padding:16px;
+		border-radius:12px;
+		border:1px solid #333;
+		background:#101010;
+		color:var(--text);
+		font-size:16px;
+	}
+
+	.main-form textarea{
+		resize:vertical;
+		min-height:160px;
+	}
+
+	.main-form input:focus,
+	.main-form textarea:focus{
+		outline:none;
+		border-color:var(--green);
+		box-shadow:0 0 12px rgba(184,255,0,.25);
+	}
+
+	.main-form .btn{
+		align-self:center;
+		min-width:220px;
+	}
+
+	/* ==========================
+	   FOOTER
+	========================== */
+
+	footer{
+		margin-top:80px;
+		padding:35px;
+		text-align:center;
+		background:#050505;
+		border-top:1px solid rgba(255,255,255,.08);
+		color:#888;
+	}
+
+	/* ==========================
+	   LIGHT MODE SUPPORT
+	========================== */
+
+	body.light .card,
+	body.light .price-card,
+	body.light .faq-item,
+	body.light .main-form,
+	body.light .bmi-container,
+	body.light .tracker-wrapper,
+	body.light .stat{
+		background:#fff;
+	}
+
+	body.light .card p,
+	body.light .price-card li,
+	body.light .faq-answer p{
+		color:#555;
+	}
+
+	body.light .card-img-placeholder{
+		background:#ececec;
+		color:#666;
+	}
+
+	body.light footer{
+		background:#ececec;
+		color:#666;
+	}
+	</style>
+</head>
+<body>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+    <nav aria-label="Main Navigation">
+        <div class="logo">IRON MIND</div>
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+			<li><a href="#progress">Progress</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#bmi">BMI Calculator</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+		<button id="themeToggle" class="theme-btn">🌙</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>BUILD 12 <br><span>DISCIPLINE</span></h1>
+            <p>Strength, nutrition, and mindset. A personal journey documenting the process of becoming better every day.</p>
+            <a href="#contact" class="btn">START TRAINING</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="about-section">
+            <h2 class="title">WHY CHOOSE US</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Elite Coaching</h3>
+                    <p>Expert guidance tailored exactly to your body type and athletic goals.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Flexible Programs</h3>
+                    <p>Workouts built around your dynamic lifestyle, not the other way around.</p>
+                </div>
+            </div>
+        </section>
+
+        
+            <h2 class="title">CURRENT STATS</h2>
+            <div class="stats">
+                <div class="stat">
+                    <h2>82kg</h2>
+                    <p>Body Weight</p>
+               <section id="progress" class="stats-section"> </div>
+                <div class="stat">
+                    <h2>180kg</h2>
+                    <p>Deadlift</p>
+                </div>
+                <div class="stat">
+                    <h2>94%</h2>
+                    <p>Consistency</p>
+                </div>
+            </div>
+            
+            <div class="tracker-wrapper">
+                <h3>Muscle Growth Goal</h3>
+                <div class="bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs">
+            <h2 class="title">TRAINING PROGRAMS</h2>
+            <div class="workouts">
+                <div class="card">
+                    <div class="card-img-placeholder">Push Day Graphic</div>
+                    <div>
+                        <h3>Push Day</h3>
+                        <p>Bench Press, Shoulder Press, Triceps isolation variations.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img-placeholder">Leg Day Graphic</div>
+                    <div>
+                        <h3>Leg Day</h3>
+                        <p>Squats, Lunges, and targeted calf conditioning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bmi" class="bmi-section">
+            <h2 class="title">BMI CALCULATOR</h2>
+            <div class="bmi-container">
+                <form id="bmiForm" class="bmi-form">
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" required min="10" max="300" placeholder="e.g. 75">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" required min="50" max="250" placeholder="e.g. 175">
+                    </div>
+                    <button type="submit" class="btn">Calculate BMI</button>
+                </form>
+                <div id="bmiResult" class="bmi-result" aria-live="polite">
+                    Enter your values above to calculate.
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <h2 class="title">MEMBERSHIP PLANS</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Base</h3>
+                    <div class="price">$29<span>/mo</span></div>
+                    <ul>
+                        <li>Access to gym floor</li>
+                        <li>Locker rooms</li>
+                    </ul>
+                    <a href="#contact" class="btn plan-btn">Join Now</a>
+                </div>
+                <div class="price-card premium">
+                    <span class="badge">POPULAR</span>
+                    <h3>Elite</h3>
+                    <div class="price">$59<span>/mo</span></div>
+                    <ul>
+                        <li>Custom training routines</li>
+                        <li>1-on-1 coaching call / mo</li>
+                    </ul>
+                    <a href="#contact" class="btn plan-btn">Join Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <h2 class="title">FREQUENTLY ASKED QUESTIONS</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">What are your opening hours? <span class="icon">+</span></button>
+                    <div class="faq-answer"><p>We are open 24/7 for all Premium and Elite tier members.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can I cancel my plan anytime? <span class="icon">+</span></button>
+                    <div class="faq-answer"><p>Yes, all of our monthly rolling contracts can be cancelled with a 7-day notice period.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="title">GET IN TOUCH</h2>
+            <div class="contact-grid">
+                <form id="contactForm" class="main-form">
+                    <input type="text" placeholder="Your Name" required aria-label="Your Name">
+                    <input type="email" placeholder="Your Email" required aria-label="Your Email">
+                    <textarea placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Iron Mind Fitness. All rights reserved.</p>
+    </footer>
+
+    <script>
+	document.addEventListener("DOMContentLoaded", () => {
+		initMobileMenu();
+		initBmiCalculator();
+		initFaqAccordion();
+		initBackToTop();
+		initTheme();
+	});
+
+	/* ==========================
+	   MOBILE MENU
+	========================== */
+	function initMobileMenu() {
+		const toggle = document.querySelector(".menu-toggle");
+		const nav = document.querySelector(".nav-links");
+
+		if (!toggle || !nav) return;
+
+		toggle.addEventListener("click", () => {
+			nav.classList.toggle("active");
+
+			toggle.setAttribute(
+				"aria-expanded",
+				nav.classList.contains("active")
+			);
+		});
+	}
+
+	/* ==========================
+	   BMI CALCULATOR
+	========================== */
+	function initBmiCalculator() {
+
+		const form = document.getElementById("bmiForm");
+		const result = document.getElementById("bmiResult");
+
+		if (!form || !result) return;
+
+		form.addEventListener("submit", (e) => {
+
+			e.preventDefault();
+
+			const weight = parseFloat(document.getElementById("weight").value);
+			const height = parseFloat(document.getElementById("height").value) / 100;
+
+			if (!weight || !height) return;
+
+			const bmi = (weight / (height * height)).toFixed(1);
+
+			let status = "";
+
+			if (bmi < 18.5)
+				status = "Underweight";
+			else if (bmi < 25)
+				status = "Normal";
+			else if (bmi < 30)
+				status = "Overweight";
+			else
+				status = "Obese";
+
+			result.innerHTML = `Your BMI is <strong>${bmi}</strong> (${status})`;
+		});
+
+	}
+
+	/* ==========================
+	   FAQ
+	========================== */
+	function initFaqAccordion() {
+
+		document.querySelectorAll(".faq-question").forEach(btn => {
+
+			btn.addEventListener("click", () => {
+
+				const item = btn.parentElement;
+
+				item.classList.toggle("active");
+
+				const icon = btn.querySelector(".icon");
+
+				if (icon) {
+					icon.textContent =
+						item.classList.contains("active")
+							? "−"
+							: "+";
+				}
+
+			});
+
+		});
+
+	}
+
+	/* ==========================
+	   BACK TO TOP
+	========================== */
+	function initBackToTop() {
+
+		const btn = document.getElementById("backToTop");
+
+		if (!btn) return;
+
+		function showButton() {
+
+			const scroll =
+				window.pageYOffset ||
+				document.documentElement.scrollTop;
+
+			if (scroll > 250) {
+				btn.classList.add("show");
+			} else {
+				btn.classList.remove("show");
+			}
+
+		}
+
+		window.addEventListener("scroll", showButton);
+
+		showButton();
+
+		btn.addEventListener("click", () => {
+
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth"
+			});
+
+		});
+
+	}
+
+	/* ==========================
+	   DARK MODE
+	========================== */
+	function initTheme() {
+
+		const btn = document.getElementById("themeToggle");
+
+		if (!btn) return;
+
+		const savedTheme = localStorage.getItem("theme");
+
+		if (savedTheme === "light") {
+			document.body.classList.add("light");
+			btn.textContent = "☀️";
+		} else {
+			btn.textContent = "🌙";
+		}
+
+		btn.addEventListener("click", () => {
+
+			document.body.classList.toggle("light");
+
+			if (document.body.classList.contains("light")) {
+
+				localStorage.setItem("theme", "light");
+				btn.textContent = "☀️";
+
+			} else {
+
+				localStorage.setItem("theme", "dark");
+				btn.textContent = "🌙";
+
+			}
+
+		});
+
+	}
+	</script>
+</body>
+</html>

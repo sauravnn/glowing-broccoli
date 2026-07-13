@@ -4,6 +4,7 @@ import About from "./components/About";
 import Progress from "./components/Progress";
 import Programs from "./components/Programs";
 import BMI from "./components/BMI";
+import Pricing from "./components/Pricing";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Progress/>
       <Programs/>
       <BMI/>
+      <Pricing/>
     </>
   );
 }

@@ -7,6 +7,7 @@ import BMI from "./components/BMI";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Pricing/>
       <FAQ/>
       <Contact/>
+      <Footer/>
     </>
   );
 }

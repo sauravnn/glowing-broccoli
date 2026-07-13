@@ -6,6 +6,7 @@ import Programs from "./components/Programs";
 import BMI from "./components/BMI";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <BMI/>
       <Pricing/>
       <FAQ/>
+      <Contact/>
     </>
   );
 }
